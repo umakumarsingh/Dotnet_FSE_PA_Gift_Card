@@ -1,0 +1,3 @@
+BoundaryTestFor_ValidBuyerPhoneNumberLength=True
+BoundaryTestFor_ValidBuyerEmail=True
+BoundaryTestFor_ValidBuyerName=True
