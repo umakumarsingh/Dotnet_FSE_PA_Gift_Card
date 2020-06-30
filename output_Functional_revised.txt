@@ -1,2 +1,0 @@
-TestFor_DeleteContactUs=True
-TestFor_ContactUsAsync=True

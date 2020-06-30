@@ -11,7 +11,7 @@ namespace GiftCards.BusinessLayer.Interface
         //methods for completing all Buyer function
         Task<Buyer> RegisterAsync(Buyer buyer);
         Task<Buyer> Login(Buyer buyer);
-        Task<Buyer> ChangeBuyerPassword(string BuyerId,string newpassword);
+        Task<Buyer> ChangeBuyerPassword(string BuyerId, string newpassword);
         Task<bool> LogOut(Buyer buyer);
         Task<IEnumerable<Buyer>> GetAllBuyersAsync();
         Task<Buyer> GetBuyerByIdAsync(string BuyerId);

@@ -18,5 +18,6 @@ namespace GiftCards.Entities
         public string Password { get; set; }
         public string Address { get; set; }
         public int Pincode { get; set; }
+        public string Category { get; set; }
     }
 }
