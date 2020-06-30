@@ -12,7 +12,7 @@ namespace GiftCards.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string GiftOrderId { get; set; }
         public string RecepientName { get; set; }
-        public string ShippingAddress {get;set;}
+        public string ShippingAddress {get; set;}
         public string GiftId { get; set; }
         public string BuyerId { get; set; }
     }

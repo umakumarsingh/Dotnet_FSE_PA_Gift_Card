@@ -9,6 +9,7 @@ namespace GiftCards.BusinessLayer.Interface
 {
    public  interface IViewOrderServices
     {
+        //methods for completing all Order function
         Task<IEnumerable<GiftOrder>> ViewAllGiftCardOrders();
     }
 }

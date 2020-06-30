@@ -11,6 +11,7 @@ namespace GiftCards.Controllers
 {
     public class ContactUsController : ControllerBase
     {
+        //creating fileld for IContactUsServices interface and inject in constructor
         private readonly IContactUsServices _services;
 
         public ContactUsController(IContactUsServices repository)
@@ -18,6 +19,7 @@ namespace GiftCards.Controllers
             _services = repository;
         }
 
+        //add new contact us 
         [HttpPost]
         [Route("api/contactUs/addValues")]
         public ActionResult AddContactUs(ContactUs contact)
@@ -26,6 +28,7 @@ namespace GiftCards.Controllers
             return Ok();
         }
 
+        //delete contact by contactusid
         [HttpDelete]
         [Route("api/contactUs/delete")]
         public ActionResult DeleteContactUs(string ContactUsId)
@@ -34,6 +37,7 @@ namespace GiftCards.Controllers
             return Ok();
         }
 
+        //get all contact
         [HttpGet]
         [Route("api/contactUs")]
         public ActionResult GetAllContactUs()
@@ -42,6 +46,7 @@ namespace GiftCards.Controllers
             return Ok();
         }
 
+        //update existing contact
         [HttpPut]
         [Route("api/contactUs/update")]
         public ActionResult UpdateContactUs(string ContactUsId)

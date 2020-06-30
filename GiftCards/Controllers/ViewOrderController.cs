@@ -13,6 +13,7 @@ namespace GiftCards.Controllers
     [ApiController]
     public class ViewOrderController : ControllerBase
     {
+        //creating fileld for IViewOrderServices interface and inject in constructor
         private readonly IViewOrderServices _services;
 
         public ViewOrderController(IViewOrderServices repository)
@@ -20,10 +21,12 @@ namespace GiftCards.Controllers
             _services = repository;
         }
 
+        //view list of gift order given by buyer
         [HttpGet]
         [Route("api/giftOrder")]
         public async Task<ActionResult<IEnumerable<GiftOrder>>> ViewGiftOrders()
         {
+            //Do code here
            return Ok();
         }
     }

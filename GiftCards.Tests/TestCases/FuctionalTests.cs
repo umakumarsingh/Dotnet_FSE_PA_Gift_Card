@@ -16,6 +16,8 @@ namespace GiftCards.Tests.TestCases
 {
     public class FuctionalTests
     {
+        ////write code here
+        ///mocking Object
         private Mock<IMongoCollection<Buyer>> _mockCollection;
         private Mock<IMongoCollection<ContactUs>> _contactmockCollection;
         private Mock<IMongoCollection<GiftOrder>> _giftOrdermockCollection;
@@ -31,6 +33,9 @@ namespace GiftCards.Tests.TestCases
         private readonly IList<GiftOrder> _orederlist;
         private readonly IList<Gift> _giftlist;
         private Mock<IOptions<Mongosettings>> _mockOptions;
+
+        //write code here
+        //creating test outpt file for saving test result
         static FuctionalTests()
         {
             if (!File.Exists("../../../../output_Functional_revised.txt"))
@@ -49,6 +54,7 @@ namespace GiftCards.Tests.TestCases
             }
         }
 
+        //creating or mocking dummy object
         public FuctionalTests()
         {
             _buyer = new Buyer
@@ -103,12 +109,15 @@ namespace GiftCards.Tests.TestCases
             _list = new List<Buyer>();
             _list.Add(_buyer);
         }
+
+        //connecting to mongo local host databse
         Mongosettings settings = new Mongosettings()
         {
             Connection = "mongodb://localhost:27017",
             DatabaseName = "guestbook"
         };
 
+        //test contactus not null in clollection
         [Fact]
         public async void TestFor_ContactUsAsync()
         {
@@ -130,6 +139,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
+            //writing tset boolean output in text file, that is present in project directory
             File.AppendAllText("../../../../output_Functional_revised.txt", "TestFor_ContactUsAsync=" + res + "\n");
 
             //Assert
@@ -138,6 +148,7 @@ namespace GiftCards.Tests.TestCases
 
         }
 
+        //test to delete contactus in collection
         [Fact]
         public async void TestFor_DeleteContactUs()
         {
@@ -151,6 +162,7 @@ namespace GiftCards.Tests.TestCases
             //Act
             var contact = await contactRepo.ContactUs(_contactUs);
             var IsDeleted = await contactRepo.DeleteContactUsAsync(_contactUs.ContactUsId);
+            //writing tset boolean output in text file, that is present in project directory
             File.AppendAllText("../../../../output_Functional_revised.txt", "TestFor_DeleteContactUs=" + IsDeleted.ToString() + "\n");
 
             //Assert

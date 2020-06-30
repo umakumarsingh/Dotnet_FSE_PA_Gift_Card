@@ -12,15 +12,18 @@ namespace GiftCards.BusinessLayer.Services
 {
     public class ContactUsServices : IContactUsServices
     {
+        //creating fiels for injecting dbcontext and registering mmongo collection
         private readonly IMongoDBContext _mongoContext;
         private IMongoCollection<ContactUs> _dbCollection;
 
+        //injecting dbContext and geetting collection
         public ContactUsServices(IMongoDBContext context)
         {
             _mongoContext = context;
             _dbCollection = _mongoContext.GetCollection<ContactUs>(typeof(ContactUs).Name);
         }
 
+        //Add new contactUs
         public async Task<ContactUs> ContactUs(ContactUs contact)
         {
             try
@@ -38,6 +41,8 @@ namespace GiftCards.BusinessLayer.Services
                 throw (ex);
             }
         }
+
+        //Delete contact
         public async Task<bool> DeleteContactUsAsync(string ContactUsId)
         {
             try
@@ -57,6 +62,7 @@ namespace GiftCards.BusinessLayer.Services
             }
         }
 
+        //get all contact list
         public Task<IEnumerable<ContactUs>> GetAllContactUs()
         {
             //Do code here

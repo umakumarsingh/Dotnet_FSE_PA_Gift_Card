@@ -8,6 +8,7 @@ namespace GiftCards.BusinessLayer.Interface
 {
   public  interface IBuyerServices
     {
+        //methods for completing all Buyer function
         Task<Buyer> RegisterAsync(Buyer buyer);
         Task<Buyer> Login(Buyer buyer);
         Task<Buyer> ChangeBuyerPassword(string BuyerId,string newpassword);
@@ -16,5 +17,6 @@ namespace GiftCards.BusinessLayer.Interface
         Task<Buyer> GetBuyerByIdAsync(string BuyerId);
         Task<IEnumerable<Gift>> SearchGiftCardByName(string GiftName);
         Task<GiftOrder> PlaceGiftOrderAsync(GiftOrder Order);
+        Task<Gift> SendPurchasedGiftCard(string GiftName);
     }
 }

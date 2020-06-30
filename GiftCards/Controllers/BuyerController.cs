@@ -12,6 +12,7 @@ namespace GiftCards.Controllers
     [ApiController]
     public class BuyerController : ControllerBase
     {
+        //creating fileld for services interface and inject in constructor
         private readonly IBuyerServices _buyereservices;
 
         public BuyerController(IBuyerServices repository)
@@ -19,6 +20,7 @@ namespace GiftCards.Controllers
             _buyereservices = repository;
         }
 
+        //get all buyer
         [HttpGet]
         [Route("api/buyer")]
         public async Task<ActionResult<IEnumerable<Buyer>>> GetAllBuyers()
@@ -27,8 +29,7 @@ namespace GiftCards.Controllers
             return Ok(buyers);
         }
 
-
-
+        //register new buyer
         [HttpPost]
         [Route("api/buyer/addValues")]
         public ActionResult Post(Buyer model)
@@ -44,8 +45,7 @@ namespace GiftCards.Controllers
 
                 _buyereservices.RegisterAsync(model);
 
-                //return Ok("Your product has been added successfully");
-                return Ok("Buyer has been added successfully"); //need to change
+                return Ok("Buyer has been added successfully");
             }
             catch (Exception ex)
             {
@@ -53,47 +53,66 @@ namespace GiftCards.Controllers
             }
         }
 
+        //Get buyer by Id
         [HttpGet("{id}")]
         public ActionResult GetBuyerByIdAsync(string BuyerId)
         {
+            //Write Code Here
             return Ok();
         }
 
+        //login Buyer
         [HttpPut]
         [Route("api/buyer/login")]
         public ActionResult Login(Buyer buyer)
         {
+            //Write Code Here
             return Ok();
         }
 
+        //change buyer password
         [HttpPut]
         [Route("api/buyer/changepassword")]
         public ActionResult ChangePassword(string BuyerId, string newpassword)
         {
+            //Write Code Here
             return Ok();
         }
 
+        //logout buyer after login
         [HttpGet]
         [Route("api/buyer/addValues")]
         public ActionResult LogOut(Buyer buyer)
         {
+            //Write Code Here
             return Ok();
         }
 
-
+        //search gift car by id
         [HttpGet]
         [Route("api/gift")]
         public ActionResult SearchGiftCardByName(string GiftName)
         {
+            //Write Code Here
             return Ok();
         }
 
+        //place gift order
         [HttpPost]
         [Route("api/giftOrder/addValues")]
         public ActionResult PlaceGiftOrderAsync(GiftOrder Order)
         {
+            //Write Code Here
             return Ok();
         }
 
+        //send purchased gift
+        [HttpPost]
+        [Route("api/buyer/sendGift")]
+        public ActionResult SendGiftCardAsync(string GiftName)
+        {
+            //Write Code Here
+            return Ok();
+        }
     }
 }

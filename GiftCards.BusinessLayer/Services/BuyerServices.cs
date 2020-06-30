@@ -12,11 +12,12 @@ namespace GiftCards.BusinessLayer.Services
 {
     public class BuyerServices : IBuyerServices
     {
+        //creating fiels for injecting dbcontext and registering mmongo collection
         private readonly IMongoDBContext _mongoContext;
         private IMongoCollection<Buyer> _buyerdbCollection;
         private IMongoCollection<GiftOrder> _giftOrderdbCollection;
 
-
+        //injecting dbContext and geetting collection
         public BuyerServices(IMongoDBContext context)
         {
             _mongoContext = context;
@@ -25,6 +26,7 @@ namespace GiftCards.BusinessLayer.Services
 
         }
 
+        //register new buyer
         public async Task<Buyer> RegisterAsync(Buyer buyer)
         {
             try
@@ -43,6 +45,7 @@ namespace GiftCards.BusinessLayer.Services
             }
         }
 
+        //get all buyer list 
         public async Task<IEnumerable<Buyer>> GetAllBuyersAsync()
         {
             try
@@ -56,21 +59,28 @@ namespace GiftCards.BusinessLayer.Services
             }
         }
 
+        //Login Buyer
         public Task<Buyer> Login(Buyer buyer)
         {
+            //write code here
             throw new NotImplementedException();
         }
 
+        //change buyer password
         public Task<Buyer> ChangeBuyerPassword(string BuyerId, string newpassword)
         {
+            //write code here
             throw new NotImplementedException();
         }
 
+        //logout buyer
         public Task<bool> LogOut(Buyer buyer)
         {
+            //write code here
             throw new NotImplementedException();
         }
 
+        //get buyer by BuyerId
         public async Task<Buyer> GetBuyerByIdAsync(string BuyerId)
         {
             var objectId = new ObjectId(BuyerId);
@@ -83,13 +93,24 @@ namespace GiftCards.BusinessLayer.Services
 
         }
 
+        //search gift card by GiftName
         public Task<IEnumerable<Gift>> SearchGiftCardByName(string GiftName)
         {
+            //write code here
             throw new NotImplementedException();
         }
 
+        //place gift order
         public Task<GiftOrder> PlaceGiftOrderAsync(GiftOrder Order)
         {
+            //write code here
+            throw new NotImplementedException();
+        }
+
+        //send purchased gift 
+        public Task<Gift> SendPurchasedGiftCard(string GiftName)
+        {
+            //write code here
             throw new NotImplementedException();
         }
     }

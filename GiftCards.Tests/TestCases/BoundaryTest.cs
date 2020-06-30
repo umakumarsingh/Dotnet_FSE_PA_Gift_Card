@@ -17,13 +17,16 @@ namespace GiftCards.Tests.TestCases
 		
   public class BoundaryTest
     {
-
+        //write code here
+        //mocking Object
         private Mock<IMongoCollection<Buyer>> _mockCollection;
         private Mock<IMongoDBContext> _mockContext;
         private Buyer _buyer;
         private readonly IList<Buyer> _list;
         private Mock<IOptions<Mongosettings>> _mockOptions;
 
+        //write code here
+        //creating test outpt file for saving test result
          static BoundaryTest()
         {
             if (!File.Exists("../../../../output_boundary_revised.txt"))
@@ -42,6 +45,7 @@ namespace GiftCards.Tests.TestCases
             }
         }
 
+        //creating or mocking dummy object
         public BoundaryTest()
         {
            
@@ -62,12 +66,15 @@ namespace GiftCards.Tests.TestCases
             _list = new List<Buyer>();
             _list.Add(_buyer);
         }
+
+        //connecting to mongo local host databse
         Mongosettings settings = new Mongosettings()
         {
             Connection = "mongodb://localhost:27017",
             DatabaseName = "guestbook"
         };
 
+        //tset for valid buyer name or not
         [Fact]
         public async Task BoundaryTestFor_ValidBuyerName()
         {
@@ -94,6 +101,8 @@ namespace GiftCards.Tests.TestCases
             Assert.True(isUserName);
             Assert.True(getisUserName);
         }
+
+        //tset for valid buyer phone nuber length or not, must be 10 digit
         [Fact]
         public async Task BoundaryTestFor_ValidBuyerPhoneNumberLength()
         {
@@ -127,6 +136,7 @@ namespace GiftCards.Tests.TestCases
             Assert.InRange(actualLength, MinLength, MaxLength);
         }
 
+        //tset for valid buyer Email or not
         [Fact]
         public async Task BoundaryTestFor_ValidBuyerEmail()
         {
@@ -199,11 +209,9 @@ namespace GiftCards.Tests.TestCases
         //    //Act
         //    await userRepo.RegisterAsync(_buyer);
         //    var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
-
+            
         //    Assert.InRange(_buyer.BuyerId.Length, 20, 30);
 
         //}
-
-
     }
 }

@@ -18,6 +18,8 @@ namespace GiftCards.Tests.TestCases
 {
     public class BusinessLogicTests
     {
+        //write code here
+        //mocking Object
         private Mock<IMongoCollection<Buyer>> _mockCollection;
         private Mock<IMongoCollection<ContactUs>> _contactmockCollection;
         private Mock<IMongoCollection<GiftOrder>> _giftOrdercontactmockCollection;
@@ -32,6 +34,9 @@ namespace GiftCards.Tests.TestCases
         private readonly IList<ContactUs> _contactlist;
         private readonly IList<GiftOrder> _orederlist;
         private Mock<IOptions<Mongosettings>> _mockOptions;
+
+        //write code here
+        //creating test outpt file for saving test result
         static BusinessLogicTests()
         {
             if (!File.Exists("../../../../output_businessLogic_revised.txt"))
@@ -50,6 +55,7 @@ namespace GiftCards.Tests.TestCases
             }
         }
 
+        //creating or mocking dummy object
         public BusinessLogicTests()
         {
             _buyer = new Buyer
@@ -103,13 +109,14 @@ namespace GiftCards.Tests.TestCases
             _list = new List<Buyer>();
             _list.Add(_buyer);
         }
+        //connecting to mongo local host databse
         Mongosettings settings = new Mongosettings()
         {
             Connection = "mongodb://localhost:27017",
             DatabaseName = "guestbook"
         };
 
-
+        // test for valid gift card amount
         [Fact]
         public void TestFor_ValidGiftCardsPrice()
         {
@@ -129,6 +136,7 @@ namespace GiftCards.Tests.TestCases
             File.AppendAllText("../../../../output_businessLogic_revised.txt", "TestFor_ValidGiftCardsPrice=" + res + "\n");
         }
 
+        //test for valid email for contact us
         [Fact]
         public async Task TestFor_ValidContactUsEmail()
         {
