@@ -1,0 +1,5 @@
+TestFor_GetBuyerByIdAsync=True
+TestFor_BuyerRegisterAsync=True
+TestFor_DeleteContactUs=True
+TestFor_ContactUsAsync=True
+TestFor_GetAllBuyersAsync=True

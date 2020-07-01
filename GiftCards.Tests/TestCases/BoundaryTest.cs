@@ -96,6 +96,8 @@ namespace GiftCards.Tests.TestCases
 
             bool getisUserName = Regex.IsMatch(result.FirstName, @"^[a-zA-Z0-9]{4,10}$", RegexOptions.IgnoreCase);
             bool isUserName = Regex.IsMatch(_buyer.FirstName, @"^[a-zA-Z0-9]{4,10}$", RegexOptions.IgnoreCase);
+            
+            //writing tset boolean output in text file, that is present in project directory
             File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerName=" + isUserName.ToString() + "\n");
             //Assert
             Assert.True(isUserName);
@@ -125,7 +127,9 @@ namespace GiftCards.Tests.TestCases
 
             //Action
             var actualLength = _buyer.PhoneNumber.ToString().Length;
-            if(actualLength == _buyer.PhoneNumber.ToString().Length)
+
+            //writing tset boolean output in text file, that is present in project directory
+            if (actualLength == _buyer.PhoneNumber.ToString().Length)
             {
                 res = true;
             }
@@ -157,6 +161,8 @@ namespace GiftCards.Tests.TestCases
             //Action
             bool CheckEmail = Regex.IsMatch(result.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             bool isEmail = Regex.IsMatch(_buyer.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            
+            //writing tset boolean output in text file, that is present in project directory
             File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerEmail=" + isEmail.ToString()+"\n");
 
             //Assert
@@ -164,54 +170,70 @@ namespace GiftCards.Tests.TestCases
             Assert.True(CheckEmail);
         }
 
-        //[Fact]
-        //public async Task BoundaryTestFor_ValidBuyerNameLength()
-        //{
-        //    //mocking
-        //    _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
-        //    default(CancellationToken))).Returns(Task.CompletedTask);
-        //    _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
+        //tset for valid buyer Name Length length or not
+        [Fact]
+        public async Task BoundaryTestFor_ValidBuyerNameLength()
+        {
+            //mocking
+            _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
+            default(CancellationToken))).Returns(Task.CompletedTask);
+            _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
 
-        //    //Craetion of new Db
-        //    _mockOptions.Setup(s => s.Value).Returns(settings);
-        //    var context = new MongoDBContext(_mockOptions.Object);
-        //    var userRepo = new BuyerServices(context);
+            //Craetion of new Db
+            _mockOptions.Setup(s => s.Value).Returns(settings);
+            var context = new MongoDBContext(_mockOptions.Object);
+            var userRepo = new BuyerServices(context);
+            var res = true;
+            //Act
+            await userRepo.RegisterAsync(_buyer);
+            var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
 
-        //    //Act
-        //    await userRepo.RegisterAsync(_buyer);
-        //    var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
+            var MinLength = 3;
+            var MaxLength = 50;
 
-        //    var MinLength = 3;
-        //    var MaxLength = 50;
+            //Action
+            var actualLength = _buyer.FirstName.Length;
 
-        //    //Action
-        //    var actualLength = _buyer.FirstName.Length;
+            //Assert
+            Assert.InRange(result.FirstName.Length, MinLength, MaxLength);
+            Assert.InRange(actualLength, MinLength, MaxLength);
 
-        //    //Assert
-        //    Assert.InRange(result.FirstName.Length, MinLength, MaxLength);
-        //    Assert.InRange(actualLength, MinLength, MaxLength);
-        //}
+            //writing tset boolean output in text file, that is present in project directory
+            if (actualLength == _buyer.FirstName.Length)
+            {
+                res = true;
+            }
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerNameLength=" + res + "\n");
 
+        }
 
-        //[Fact]
-        //public async Task BoundaryTestFor_ValidBuyerId()
-        //{
-        //    //mocking
-        //    _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
-        //    default(CancellationToken))).Returns(Task.CompletedTask);
-        //    _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
+        //tset for valid buyer Id
+        [Fact]
+        public async Task BoundaryTestFor_ValidBuyerId()
+        {
+            //mocking
+            _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
+            default(CancellationToken))).Returns(Task.CompletedTask);
+            _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
 
-        //    //Craetion of new Db
-        //    _mockOptions.Setup(s => s.Value).Returns(settings);
-        //    var context = new MongoDBContext(_mockOptions.Object);
-        //    var userRepo = new BuyerServices(context);
+            //Craetion of new Db
+            _mockOptions.Setup(s => s.Value).Returns(settings);
+            var context = new MongoDBContext(_mockOptions.Object);
+            var userRepo = new BuyerServices(context);
+            var res = false;
+            //Act
+            await userRepo.RegisterAsync(_buyer);
+            var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
 
-        //    //Act
-        //    await userRepo.RegisterAsync(_buyer);
-        //    var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
-            
-        //    Assert.InRange(_buyer.BuyerId.Length, 20, 30);
+            Assert.InRange(_buyer.BuyerId.Length, 20, 30);
 
-        //}
+            //writing tset boolean output in text file, that is present in project directory
+            if (result.BuyerId.Length.ToString() == _buyer.BuyerId.Length.ToString())
+            {
+                res = true;
+            }
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerId=" + res + "\n");
+
+        }
     }
 }

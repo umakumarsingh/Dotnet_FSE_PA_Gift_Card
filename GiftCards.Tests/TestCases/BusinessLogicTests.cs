@@ -129,7 +129,9 @@ namespace GiftCards.Tests.TestCases
 
             //Assert
             Assert.InRange(actual, Min, Max);
-            if(actual == _gift.Ammount)
+            
+            //writing tset boolean output in text file, that is present in project directory
+            if (actual == _gift.Ammount)
             {
                 res = true;
             }
@@ -153,10 +155,13 @@ namespace GiftCards.Tests.TestCases
             //Act
             var result = await userRepo.ContactUs(_contactUs);
 
-            ////Action
+            //Action
             bool CheckEmail = Regex.IsMatch(result.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             bool isEmail = Regex.IsMatch(_contactUs.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            
+            //writing tset boolean output in text file, that is present in project directory
             File.AppendAllText("../../../../output_businessLogic_revised.txt", "TestFor_ValidContactUsEmail=" + isEmail.ToString() + "\n");
+            
             //Assert
             Assert.True(isEmail);
             Assert.True(CheckEmail);

@@ -169,56 +169,104 @@ namespace GiftCards.Tests.TestCases
             Assert.True(IsDeleted);
         }
 
-        //[Fact]
-        //public async Task TestFor_GetAllBuyersAsync()
-        //{
-        //    //Arrange
-        //    Mock<IAsyncCursor<Buyer>> _userCursor = new Mock<IAsyncCursor<Buyer>>();
-        //    _userCursor.Setup(_ => _.Current).Returns(_list);
-        //    _userCursor
-        //        .SetupSequence(_ => _.MoveNext(It.IsAny<CancellationToken>()))
-        //        .Returns(true)
-        //        .Returns(false);
+        [Fact]
+        public async Task TestFor_GetAllBuyersAsync()
+        {
+            //Arrange
+            var res = false;
+            Mock<IAsyncCursor<Buyer>> _userCursor = new Mock<IAsyncCursor<Buyer>>();
+            _userCursor.Setup(_ => _.Current).Returns(_list);
+            _userCursor
+                .SetupSequence(_ => _.MoveNext(It.IsAny<CancellationToken>()))
+                .Returns(true)
+                .Returns(false);
 
-        //    _mockCollection.Setup(op => op.FindSync(It.IsAny<FilterDefinition<Buyer>>(),
-        //    It.IsAny<FindOptions<Buyer, Buyer>>(),
-        //     It.IsAny<CancellationToken>())).Returns(_userCursor.Object);
-        //    _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
-        //    _mockOptions.Setup(s => s.Value).Returns(settings);
-        //    var context = new MongoDBContext(_mockOptions.Object);
-        //    var userRepo = new BuyerServices(context);
-        //    //Action
-        //    var result = await userRepo.GetAllBuyersAsync();
+            _mockCollection.Setup(op => op.FindSync(It.IsAny<FilterDefinition<Buyer>>(),
+            It.IsAny<FindOptions<Buyer, Buyer>>(),
+             It.IsAny<CancellationToken>())).Returns(_userCursor.Object);
+            _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
+            _mockOptions.Setup(s => s.Value).Returns(settings);
+            var context = new MongoDBContext(_mockOptions.Object);
+            var userRepo = new BuyerServices(context);
+            //Action
+            var result = await userRepo.GetAllBuyersAsync();
 
-        //    //Assert 
-        //    foreach (Buyer user in result)
-        //    {
-        //        Assert.NotNull(user);
-        //        break;
-        //    }
-        //}
+            //Assert 
+            foreach (Buyer user in result)
+            {
+                Assert.NotNull(user);
+                break;
+            }
 
-        //[Fact]
-        //public async void TestFor_BuyerRegisterAsync()
-        //{
-        //    //mocking
-        //    _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
-        //    default(CancellationToken))).Returns(Task.CompletedTask);
-        //    _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
+            //writing tset boolean output in text file, that is present in project directory
+            if (result != null)
+            {
+                res = true;
+            }
+            File.AppendAllText("../../../../output_Functional_revised.txt", "TestFor_GetAllBuyersAsync=" + res + "\n");
+        
+        }
 
-        //    _mockOptions.Setup(s => s.Value).Returns(settings);
-        //    var context = new MongoDBContext(_mockOptions.Object);
-        //    var userRepo = new BuyerServices(context);
+        [Fact]
+        public async void TestFor_BuyerRegisterAsync()
+        {
+            //mocking
+            var res = false;
+            _mockCollection.Setup(op => op.InsertOneAsync(_buyer, null,
+            default(CancellationToken))).Returns(Task.CompletedTask);
+            _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name)).Returns(_mockCollection.Object);
 
-        //    //Action
-        //   var buyer= await userRepo.RegisterAsync(_buyer);
+            _mockOptions.Setup(s => s.Value).Returns(settings);
+            var context = new MongoDBContext(_mockOptions.Object);
+            var userRepo = new BuyerServices(context);
 
-        //    //Assert
-        //    Assert.NotNull(buyer);
-        //   Assert.Equal(_buyer.FirstName, buyer.FirstName);
-        //  
-        //}
+            //Action
+            var buyer = await userRepo.RegisterAsync(_buyer);
 
+            //Assert
+            Assert.NotNull(buyer);
+            Assert.Equal(_buyer.FirstName, buyer.FirstName);
+
+            //writing tset boolean output in text file, that is present in project directory
+            if (buyer != null)
+            {
+                res = true;
+            }
+            File.AppendAllText("../../../../output_Functional_revised.txt", "TestFor_BuyerRegisterAsync=" + res + "\n");
+        
+        }
+
+        [Fact]
+        public async Task TestFor_GetBuyerByIdAsync()
+        {
+            //Arrange
+            //mocking
+            var res = false;
+            _mockCollection.Setup(op => op.FindSync(It.IsAny<FilterDefinition<Buyer>>(),
+            It.IsAny<FindOptions<Buyer, Buyer>>(),
+             It.IsAny<CancellationToken>()));
+            _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name));
+
+            //Craetion of new Db
+            _mockOptions.Setup(s => s.Value).Returns(settings);
+            var context = new MongoDBContext(_mockOptions.Object);
+            var userRepo = new BuyerServices(context);
+
+            //Act
+            await userRepo.RegisterAsync(_buyer);
+            var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
+
+            //Assert
+            Assert.NotNull(result);
+
+            //writing tset boolean output in text file, that is present in project directory
+            if (result != null)
+            {
+                res = true;
+            }
+            File.AppendAllText("../../../../output_Functional_revised.txt", "TestFor_GetBuyerByIdAsync=" + res + "\n");
+
+        }
         //[Fact]
         //public async void TestFor_BuyerLogout()
         //{
@@ -237,6 +285,7 @@ namespace GiftCards.Tests.TestCases
         //    //Assert
         //    Assert.True(isLogOut);
         //}
+
         //[Fact]
         //public async void TestFor_BuyerLogin()
         //{
@@ -279,29 +328,7 @@ namespace GiftCards.Tests.TestCases
         //    Assert.Equal(_buyer.FirstName, result.FirstName);
         //}
 
-
-        //[Fact]
-        //public async Task TestFor_GetBuyerByIdAsync()
-        //{
-        //    //Arrange
-        //    //mocking
-        //    _mockCollection.Setup(op => op.FindSync(It.IsAny<FilterDefinition<Buyer>>(),
-        //    It.IsAny<FindOptions<Buyer, Buyer>>(),
-        //     It.IsAny<CancellationToken>()));
-        //    _mockContext.Setup(c => c.GetCollection<Buyer>(typeof(Buyer).Name));
-
-        //    //Craetion of new Db
-        //    _mockOptions.Setup(s => s.Value).Returns(settings);
-        //    var context = new MongoDBContext(_mockOptions.Object);
-        //    var userRepo = new BuyerServices(context);
-
-        //    //Act
-        //    await userRepo.RegisterAsync(_buyer);
-        //    var result = await userRepo.GetBuyerByIdAsync(_buyer.BuyerId);
-
-        //    //Assert
-        //    Assert.NotNull(result);
-        //}
+        //Enable below code block to test Place Gift Order and write output in text file
 
         //[Fact]
         //public async Task TestFor_PlaceGiftOrderAsync()
@@ -324,6 +351,7 @@ namespace GiftCards.Tests.TestCases
         //    Assert.Equal(_gift.GiftId, result.GiftId);
         //}
 
+        //Enable below code block to test Search Gift Card by name and write output in text file
         //[Fact]
         //public async Task TestFor_SearchGiftCardByName()
         //{
@@ -389,6 +417,7 @@ namespace GiftCards.Tests.TestCases
         //        break;
         //    }
         //}
+
         //[Fact]
         //public async void TestFor_UpdateContactUs()
         //{
@@ -406,9 +435,6 @@ namespace GiftCards.Tests.TestCases
         //    //Assert
         //    Assert.NotNull(upadtedContactUs);
         //}
-
-
-
 
         //[Fact]
         //public async Task TestFor_ViewGiftCardOrders()
