@@ -1,2 +1,0 @@
-TestFor_ValidGiftCardsPrice=True
-TestFor_ValidContactUsEmail=True
