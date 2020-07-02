@@ -38,10 +38,10 @@ namespace GiftCards.Tests.TestCases
         //creating test outpt file for saving test result
         static FuctionalTests()
         {
-            if (!File.Exists("../../../../output_functional_revised.txt"))
+            if (!File.Exists("../../../../output_revised.txt"))
                 try
                 {
-                    File.Create("../../../../output_functional_revised.txt");
+                    File.Create("../../../../output_revised.txt");
                 }
                 catch (Exception)
                 {
@@ -49,8 +49,8 @@ namespace GiftCards.Tests.TestCases
                 }
             else
             {
-                File.Delete("../../../../output_functional_revised.txt");
-                File.Create("../../../../output_functional_revised.txt");
+                File.Delete("../../../../output_revised.txt");
+                File.Create("../../../../output_revised.txt");
             }
         }
 
@@ -140,7 +140,7 @@ namespace GiftCards.Tests.TestCases
                 res = true;
             }
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_functional_revised.txt", "TestFor_ContactUsAsync=" + res + "\n");
+            File.AppendAllText("../../../../output_revised.txt", "TestFor_ContactUsAsync=" + res + "\n");
 
             //Assert
             Assert.NotNull(contact);
@@ -163,7 +163,7 @@ namespace GiftCards.Tests.TestCases
             var contact = await contactRepo.ContactUs(_contactUs);
             var IsDeleted = await contactRepo.DeleteContactUsAsync(_contactUs.ContactUsId);
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_functional_revised.txt", "TestFor_DeleteContactUs=" + IsDeleted.ToString() + "\n");
+            File.AppendAllText("../../../../output_revised.txt", "TestFor_DeleteContactUs=" + IsDeleted.ToString() + "\n");
 
             //Assert
             Assert.True(IsDeleted);
@@ -203,7 +203,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_functional_revised.txt", "TestFor_GetAllBuyersAsync=" + res + "\n");
+            File.AppendAllText("../../../../output_revised.txt", "TestFor_GetAllBuyersAsync=" + res + "\n");
         
         }
 
@@ -232,7 +232,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_functional_revised.txt", "TestFor_BuyerRegisterAsync=" + res + "\n");
+            File.AppendAllText("../../../../output_revised.txt", "TestFor_BuyerRegisterAsync=" + res + "\n");
         
         }
 
@@ -264,7 +264,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_functional_revised.txt", "TestFor_GetBuyerByIdAsync=" + res + "\n");
+            File.AppendAllText("../../../../output_revised.txt", "TestFor_GetBuyerByIdAsync=" + res + "\n");
 
         }
         //[Fact]
