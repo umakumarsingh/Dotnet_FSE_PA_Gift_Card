@@ -29,10 +29,10 @@ namespace GiftCards.Tests.TestCases
         //creating test outpt file for saving test result
         static ExceptionalTest()
         {
-            if (!File.Exists("../../../../output_Exception_revised.txt"))
+            if (!File.Exists("../../../../output_exception_revised.txt"))
                 try
                 {
-                    File.Create("../../../../output_Exception_revised.txt");
+                    File.Create("../../../../output_exception_revised.txt");
                 }
                 catch (Exception)
                 {
@@ -40,8 +40,8 @@ namespace GiftCards.Tests.TestCases
                 }
             else
             {
-                File.Delete("../../../../output_Exception_revised.txt");
-                File.Create("../../../../output_Exception_revised.txt");
+                File.Delete("../../../../output_exception_revised.txt");
+                File.Create("../../../../output_exception_revised.txt");
             }
         }
 
@@ -105,7 +105,7 @@ namespace GiftCards.Tests.TestCases
                 res = false;
             }
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Exception_revised.txt", "CreateNewBuyer_Null_Failure=" + res + "\n");
+            File.AppendAllText("../../../../output_exception_revised.txt", "CreateNewBuyer_Null_Failure=" + res + "\n");
 
         }
 
@@ -129,7 +129,7 @@ namespace GiftCards.Tests.TestCases
             }
 
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Exception_revised.txt", "CreateNewContactUs_Null_Failure=" + res + "\n");
+            File.AppendAllText("../../../../output_exception_revised.txt", "CreateNewContactUs_Null_Failure=" + res + "\n");
 
         }
 

@@ -39,10 +39,10 @@ namespace GiftCards.Tests.TestCases
         //creating test outpt file for saving test result
         static BusinessLogicTests()
         {
-            if (!File.Exists("../../../../output_Business_revised.txt"))
+            if (!File.Exists("../../../../output_business_revised.txt"))
                 try
                 {
-                    File.Create("../../../../output_Business_revised.txt");
+                    File.Create("../../../../output_business_revised.txt");
                 }
                 catch (Exception)
                 {
@@ -50,8 +50,8 @@ namespace GiftCards.Tests.TestCases
                 }
             else
             {
-                File.Delete("../../../../output_Business_revised.txt");
-                File.Create("../../../../output_Business_revised.txt");
+                File.Delete("../../../../output_business_revised.txt");
+                File.Create("../../../../output_business_revised.txt");
             }
         }
 
@@ -135,7 +135,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_Business_revised.txt", "TestFor_ValidGiftCardsPrice=" + res + "\n");
+            File.AppendAllText("../../../../output_business_revised.txt", "TestFor_ValidGiftCardsPrice=" + res + "\n");
         }
 
         //test for valid email for contact us
@@ -160,7 +160,7 @@ namespace GiftCards.Tests.TestCases
             bool isEmail = Regex.IsMatch(_contactUs.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Business_revised.txt", "TestFor_ValidContactUsEmail=" + isEmail.ToString() + "\n");
+            File.AppendAllText("../../../../output_business_revised.txt", "TestFor_ValidContactUsEmail=" + isEmail.ToString() + "\n");
             
             //Assert
             Assert.True(isEmail);

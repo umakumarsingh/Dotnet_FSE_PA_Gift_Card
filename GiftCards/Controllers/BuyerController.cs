@@ -55,10 +55,19 @@ namespace GiftCards.Controllers
 
         //Get buyer by Id
         [HttpGet("{id}")]
-        public ActionResult GetBuyerByIdAsync(string BuyerId)
+        public async Task<IActionResult> GetBuyerByIdAsync(string BuyerId)
         {
             //Write Code Here
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var buyerResult = await _buyereservices.GetBuyerByIdAsync(BuyerId);
+            if (buyerResult == null)
+            {
+                return NotFound();
+            }
+            return Ok(buyerResult);
         }
 
         //login Buyer

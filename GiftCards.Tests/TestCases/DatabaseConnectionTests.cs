@@ -31,10 +31,10 @@ namespace GiftCards.Tests.TestCases
         //creating test outpt file for saving test result
         static DatabaseConnectionTests()
         {
-            if (!File.Exists("../../../../output_Database_revised.txt"))
+            if (!File.Exists("../../../../output_database_revised.txt"))
                 try
                 {
-                    File.Create("../../../../output_Database_revised.txt");
+                    File.Create("../../../../output_database_revised.txt");
                 }
                 catch (Exception)
                 {
@@ -42,8 +42,8 @@ namespace GiftCards.Tests.TestCases
                 }
             else
             {
-                File.Delete("../../../../output_Database_revised.txt");
-                File.Create("../../../../output_Database_revised.txt");
+                File.Delete("../../../../output_database_revised.txt");
+                File.Create("../../../../output_database_revised.txt");
             }
         }
 
@@ -70,7 +70,7 @@ namespace GiftCards.Tests.TestCases
                 res = true;
             }
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Database_revised.txt", "MongoBookDBContext_Constructor_Success=" + res + "\n");
+            File.AppendAllText("../../../../output_database_revised.txt", "MongoBookDBContext_Constructor_Success=" + res + "\n");
 
             //Assert 
             Assert.IsType<MongoDBContext>(context);
@@ -101,7 +101,7 @@ namespace GiftCards.Tests.TestCases
                 res = true;
             }
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Database_revised.txt", "MongoBookDBContext_GetCollection_ValidName_Success=" + res + "\n");
+            File.AppendAllText("../../../../output_database_revised.txt", "MongoBookDBContext_GetCollection_ValidName_Success=" + res + "\n");
 
             //Assert 
             Assert.NotNull(myCollection);

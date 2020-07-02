@@ -14,7 +14,6 @@ using Xunit;
 
 namespace GiftCards.Tests.TestCases
 {
-		
   public class BoundaryTest
     {
         //write code here
@@ -29,10 +28,10 @@ namespace GiftCards.Tests.TestCases
         //creating test outpt file for saving test result
          static BoundaryTest()
         {
-            if (!File.Exists("../../../../output_Boundary_revised.txt"))
+            if (!File.Exists("../../../../output_boundary_revised.txt"))
                 try
                 {
-                    File.Create("../../../../output_Boundary_revised.txt");
+                    File.Create("../../../../output_boundary_revised.txt");
                 }
                 catch (Exception)
                 {
@@ -40,8 +39,8 @@ namespace GiftCards.Tests.TestCases
                 }
             else
             {
-                File.Delete("../../../../output_Boundary_revised.txt");
-                File.Create("../../../../output_Boundary_revised.txt");
+                File.Delete("../../../../output_boundary_revised.txt");
+                File.Create("../../../../output_boundary_revised.txt");
             }
         }
 
@@ -98,7 +97,7 @@ namespace GiftCards.Tests.TestCases
             bool isUserName = Regex.IsMatch(_buyer.FirstName, @"^[a-zA-Z0-9]{4,10}$", RegexOptions.IgnoreCase);
             
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Boundary_revised.txt", "BoundaryTestFor_ValidBuyerName=" + isUserName.ToString() + "\n");
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerName=" + isUserName.ToString() + "\n");
             //Assert
             Assert.True(isUserName);
             Assert.True(getisUserName);
@@ -133,7 +132,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_Boundary_revised.txt", "BoundaryTestFor_ValidBuyerPhoneNumberLength=" + res + "\n");
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerPhoneNumberLength=" + res + "\n");
 
             //Assert
             Assert.InRange(result.PhoneNumber.ToString().Length, MinLength, MaxLength);
@@ -163,7 +162,7 @@ namespace GiftCards.Tests.TestCases
             bool isEmail = Regex.IsMatch(_buyer.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             
             //writing tset boolean output in text file, that is present in project directory
-            File.AppendAllText("../../../../output_Boundary_revised.txt", "BoundaryTestFor_ValidBuyerEmail=" + isEmail.ToString()+"\n");
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerEmail=" + isEmail.ToString()+"\n");
 
             //Assert
             Assert.True(isEmail);
@@ -203,7 +202,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_Boundary_revised.txt", "BoundaryTestFor_ValidBuyerNameLength=" + res + "\n");
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerNameLength=" + res + "\n");
 
         }
 
@@ -232,7 +231,7 @@ namespace GiftCards.Tests.TestCases
             {
                 res = true;
             }
-            File.AppendAllText("../../../../output_Boundary_revised.txt", "BoundaryTestFor_ValidBuyerId=" + res + "\n");
+            File.AppendAllText("../../../../output_boundary_revised.txt", "BoundaryTestFor_ValidBuyerId=" + res + "\n");
 
         }
     }
