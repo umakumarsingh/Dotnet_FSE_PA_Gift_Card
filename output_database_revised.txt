@@ -1,2 +1,0 @@
-MongoBookDBContext_GetCollection_ValidName_Success=True
-MongoBookDBContext_Constructor_Success=True
