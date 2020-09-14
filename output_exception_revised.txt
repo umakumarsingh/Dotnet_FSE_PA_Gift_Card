@@ -1,7 +1,1 @@
-TestFor_GetAll_BlogPost_Comment=True
-TestFor_GetAll_BlogPost=True
-CommentTest_ReturnsNotFound_WhenCommentDoesNotExist=True
-TestFor_Get_BlogPostById=False
-TestFor_CreateNewBlogPost=True
-TestFor_CreateNew_CommentonPost=True
-CreateTest_Post_ReturnsCreateView_WhenModelStateIsInvalid=True
+
