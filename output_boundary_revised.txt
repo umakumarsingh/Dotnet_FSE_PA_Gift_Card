@@ -1,2 +1,1 @@
-TestFor_ValidateCommentId=True
-TestFor_ValidatePostID=True
+
