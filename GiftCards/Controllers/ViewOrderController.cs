@@ -23,7 +23,7 @@ namespace GiftCards.Controllers
 
         //view list of gift order given by buyer
         [HttpGet]
-        [Route("api/giftOrder")]
+        [Route("api/vieworder")]
         public async Task<ActionResult<IEnumerable<GiftOrder>>> ViewGiftOrders()
         {
             //Do code here

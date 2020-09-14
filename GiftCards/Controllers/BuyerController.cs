@@ -31,7 +31,7 @@ namespace GiftCards.Controllers
 
         //register new buyer
         [HttpPost]
-        [Route("api/buyer/addValues")]
+        [Route("api/buyer/addbuyer")]
         public ActionResult Post(Buyer model)
         {
             //Do code here
@@ -39,7 +39,7 @@ namespace GiftCards.Controllers
         }
 
         //Get buyer by Id
-        [HttpGet("{id}")]
+        [HttpGet("api/buyer/{id}")]
         public async Task<IActionResult> GetBuyerByIdAsync(string BuyerId)
         {
             //Write Code Here
@@ -66,7 +66,7 @@ namespace GiftCards.Controllers
 
         //logout buyer after login
         [HttpGet]
-        [Route("api/buyer/addValues")]
+        [Route("api/buyer/logout")]
         public ActionResult LogOut(Buyer buyer)
         {
             //Write Code Here
@@ -75,7 +75,7 @@ namespace GiftCards.Controllers
 
         //search gift car by id
         [HttpGet]
-        [Route("api/gift")]
+        [Route("api/buyer/gift")]
         public ActionResult SearchGiftCardByName(string GiftName)
         {
             //Write Code Here
@@ -84,7 +84,7 @@ namespace GiftCards.Controllers
 
         //place gift order
         [HttpPost]
-        [Route("api/giftOrder/addValues")]
+        [Route("api/buyer/giftOrder")]
         public ActionResult PlaceGiftOrderAsync(GiftOrder Order)
         {
             //Write Code Here
